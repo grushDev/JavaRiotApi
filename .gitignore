@@ -1,0 +1,24 @@
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+bin/
+
+# Android
+gen/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+#binaries
+out/

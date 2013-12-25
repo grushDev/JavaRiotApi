@@ -1,5 +1,6 @@
 package kr.riotapi.core;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class ApiCall {
         return toUrlString();
     }
 
-    public String execute() {
+    public String execute() throws IOException {
         return request.getService().getApi().execute(this);
     }
 }

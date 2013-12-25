@@ -1,5 +1,6 @@
 package kr.riotapi.core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +34,10 @@ public class ApiRequest {
 
     public ApiPreCall queryParameter(String key, Object value) {
         return new ApiPreCall(new ApiParameter(ApiParameter.Type.QUERY, key, value), this);
+    }
+
+    public ApiCall forRegion(String region) {
+        return new ApiCall(region, new ArrayList<ApiParameter>(), this);
     }
 
     String format(List<ApiParameter> parameters) {

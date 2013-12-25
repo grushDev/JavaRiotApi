@@ -32,6 +32,7 @@ public class RiotApi {
     String concatenateURL(List<ApiParameter> parameters, String... parts) {
         StringBuilder builder = new StringBuilder(baseUrl);
         for(String part : parts) {
+            if(part == null || part.equals("")) continue;
             builder.append("/").append(part);
         }
         builder.append("?");
@@ -43,7 +44,7 @@ public class RiotApi {
         return builder.toString();
     }
 
-    String execute(ApiCall call) {
+    String execute(ApiCall call) throws IOException {
         HttpGet get = new HttpGet(call.toUrlString());
         String body = null;
         int statusCode = 0;
@@ -53,10 +54,10 @@ public class RiotApi {
             body = EntityUtils.toString(response.getEntity());
             response.close();
         } catch(IOException ex) {
-            throw new UnsupportedOperationException("not supported yet."); //TODO throw custom exception
+            throw new IOException("There was a problem receiving or processing a server response: " + ex.getMessage(), ex);
         }
         if(statusCode != 200) //TODO magic number
-            throw new UnsupportedOperationException("not supported yet."); //TODO throw custom exception
+            throw new UnsupportedOperationException("status code not supported yet: " + statusCode); //TODO throw custom exception
         return body;
     }
 }

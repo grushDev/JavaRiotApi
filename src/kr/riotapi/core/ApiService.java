@@ -11,9 +11,9 @@ public class ApiService {
 
     protected final String name;
     protected final String version;
-    protected final RiotApi api;
+    protected final ApiDomain api;
 
-    ApiService(String name, String version, RiotApi api) {
+    public ApiService(String name, String version, ApiDomain api) {
         this.name = name;
         this.version = version;
         this.api = api;
@@ -27,7 +27,7 @@ public class ApiService {
         return version;
     }
 
-    public RiotApi getApi() {
+    public ApiDomain getApi() {
         return api;
     }
 

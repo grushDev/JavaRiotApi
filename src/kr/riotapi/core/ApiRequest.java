@@ -15,7 +15,7 @@ public class ApiRequest {
     protected final String template;
     protected final ApiService service;
 
-    ApiRequest(String template, ApiService service) {
+    public ApiRequest(String template, ApiService service) {
         this.template = template;
         this.service = service;
     }

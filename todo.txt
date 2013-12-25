@@ -1,11 +1,11 @@
 01. create calls (core)                 [x]
 02. Execute calls                       [x]
-03. error handling
- * Network errors
- * url errors (should not happen)
- * error code (api errors)
-04. json parsing with gson
-05. hard code as help (RiotApiHelper)
+03. error handling                      []
+ * Network errors                       [x]
+ * url errors (should not happen)       []
+ * error code (api errors)              []
+04. json parsing with gson              []
+05. hard code as help (RiotApiHelper)   []
 
 
 POOL
@@ -15,4 +15,4 @@ COMPONENTS
 ======================================
  * CORE
  * NET      (REPLACED BY apache.httpcomponents:httpclient:4.3.1)
- * UTIL
+ * EXTENSION (EXT)

@@ -16,12 +16,12 @@ import java.util.List;
  * Time: 14:41
  * To change this template use File | Settings | File Templates.
  */
-public class RiotApi {
+public class ApiDomain { //TODO find better name
 
     protected final String apiKey;
     protected final String baseUrl = "http://prod.api.pvp.net/api/lol";
 
-    public RiotApi(String apiKey) {
+    public ApiDomain(String apiKey) {
         this.apiKey = apiKey;
     }
 
@@ -29,7 +29,7 @@ public class RiotApi {
         return new ApiService(name, version, this);
     }
 
-    String concatenateURL(List<ApiParameter> parameters, String... parts) {
+    public String concatenateURL(List<ApiParameter> parameters, String... parts) {
         StringBuilder builder = new StringBuilder(baseUrl);
         for(String part : parts) {
             if(part == null || part.equals("")) continue;
@@ -44,7 +44,7 @@ public class RiotApi {
         return builder.toString();
     }
 
-    String execute(ApiCall call) throws IOException {
+    public String execute(ApiCall call) throws IOException {
         HttpGet get = new HttpGet(call.toUrlString());
         String body = null;
         int statusCode = 0;

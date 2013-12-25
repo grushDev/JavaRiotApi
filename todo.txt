@@ -1,0 +1,17 @@
+01. create calls (core)        [x]
+02. Execute calls
+03. error handling
+ * Network errors
+ * url errors (should not happen)
+ * error code (api errors)
+04. hard code as help (RiotApiHelper)
+
+
+POOL
+======================================
+
+COMPONENTS
+======================================
+ * CORE
+ * NET
+ * UTIL

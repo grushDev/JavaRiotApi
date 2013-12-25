@@ -31,6 +31,10 @@ public class ApiRequest {
         return new ApiPreCall(new ApiParameter(ApiParameter.Type.PATH, key, value), this);
     }
 
+    public ApiPreCall queryParameter(String key, Object value) {
+        return new ApiPreCall(new ApiParameter(ApiParameter.Type.QUERY, key, value), this);
+    }
+
     String format(List<ApiParameter> parameters) {
         String temp = template;
         for(ApiParameter parameter : parameters) {

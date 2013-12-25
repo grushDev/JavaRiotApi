@@ -32,7 +32,11 @@ public class ApiPreCall {
     }
 
     public ApiPreCall pathParameter(String key, Object value) {
-        return new ApiPreCall(new ApiParameter(ApiParameter.Type.PATH, key, value), request);
+        return new ApiPreCall(parameters, new ApiParameter(ApiParameter.Type.PATH, key, value), request);
+    }
+
+    public ApiPreCall queryParameter(String key, Object value) {
+        return new ApiPreCall(parameters, new ApiParameter(ApiParameter.Type.QUERY, key, value), request);
     }
 
     public ApiCall forRegion(String region) {

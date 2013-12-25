@@ -1,5 +1,7 @@
 package kr.riotapi.core;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: kenneth
@@ -20,12 +22,17 @@ public class RiotApi {
         return new ApiService(name, version, this);
     }
 
-    String concatenateURL(String... parts) {
+    String concatenateURL(List<ApiParameter> parameters, String... parts) {
         StringBuilder builder = new StringBuilder(baseUrl);
         for(String part : parts) {
             builder.append("/").append(part);
         }
-        builder.append("?api_key=").append(apiKey);
+        builder.append("?");
+        for(ApiParameter parameter : parameters) {
+            if(parameter.getType() != ApiParameter.Type.QUERY) continue;
+            builder.append(parameter.getKey()).append("=").append(parameter.getValue()).append("&");
+        }
+        builder.append("api_key=").append(apiKey);
         return builder.toString();
     }
 }

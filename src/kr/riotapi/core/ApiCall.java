@@ -24,6 +24,7 @@ public class ApiCall {
 
     public String toUrlString() {
         return request.getService().getApi().concatenateURL(
+                parameters,
                 region,
                 request.getService().getVersion(),
                 request.getService().getName(),

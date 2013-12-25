@@ -36,4 +36,8 @@ public class ApiCall {
     public String toString() {
         return toUrlString();
     }
+
+    public String execute() {
+        return request.getService().getApi().execute(this);
+    }
 }

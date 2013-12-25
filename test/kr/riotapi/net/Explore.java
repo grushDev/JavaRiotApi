@@ -24,9 +24,10 @@ public class Explore {
             CloseableHttpResponse response = client.execute(getRequest);
             int statusCode = response.getStatusLine().getStatusCode();
             String json  = EntityUtils.toString(response.getEntity());
+            System.out.println(json);
             response.close();
         } catch(IOException ioEx) {
-
+            ioEx.printStackTrace();
         }
     }
 }

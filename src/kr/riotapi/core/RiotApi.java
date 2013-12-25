@@ -1,5 +1,12 @@
 package kr.riotapi.core;
 
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -34,5 +41,22 @@ public class RiotApi {
         }
         builder.append("api_key=").append(apiKey);
         return builder.toString();
+    }
+
+    String execute(ApiCall call) {
+        HttpGet get = new HttpGet(call.toUrlString());
+        String body = null;
+        int statusCode = 0;
+        try(CloseableHttpClient client = HttpClients.createDefault()) {
+            CloseableHttpResponse response = client.execute(get);
+            statusCode = response.getStatusLine().getStatusCode();
+            body = EntityUtils.toString(response.getEntity());
+            response.close();
+        } catch(IOException ex) {
+            throw new UnsupportedOperationException("not supported yet."); //TODO throw custom exception
+        }
+        if(statusCode != 200) //TODO magic number
+            throw new UnsupportedOperationException("not supported yet."); //TODO throw custom exception
+        return body;
     }
 }

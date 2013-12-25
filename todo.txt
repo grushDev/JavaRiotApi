@@ -4,7 +4,8 @@
  * Network errors
  * url errors (should not happen)
  * error code (api errors)
-04. hard code as help (RiotApiHelper)
+04. json parsing with gson
+05. hard code as help (RiotApiHelper)
 
 
 POOL

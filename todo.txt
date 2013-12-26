@@ -2,7 +2,7 @@
 02. Execute calls (core, apache)        [x]
 03. error handling                      [x]
  * Network errors                       [x]
- * url errors (should not happen)       [-]
+ * url errors (should not happen)       [-] //maybe do it when needed
  * error code (api errors)              [x]
 04. json parsing with gson              [x]
 05. hard code as help (RiotApiHelper)   [x]

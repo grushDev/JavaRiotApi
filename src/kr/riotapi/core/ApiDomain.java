@@ -17,7 +17,7 @@ import java.util.List;
  * Time: 14:41
  * To change this template use File | Settings | File Templates.
  */
-public class ApiDomain { //TODO find better name
+public class ApiDomain { //TODO find better name???
 
     protected final String apiKey;
     protected final String baseUrl = "http://prod.api.pvp.net/api/lol";

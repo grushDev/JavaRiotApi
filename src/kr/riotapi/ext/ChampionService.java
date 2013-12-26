@@ -21,19 +21,19 @@ public class ChampionService extends ExtApiService {
         this.champion = request("");
     }
 
-    public JsonElement champions(RegionEnum region) throws IOException{
+    public JsonElement champions(RegionEnum region) throws IOException, ApiException {
         return champions(region, false);
     }
 
-    public JsonElement champions() throws IOException {
+    public JsonElement champions() throws IOException, ApiException {
         return champions(defaultRegion());
     }
 
-    public JsonElement champions(RegionEnum region, boolean freeToPlay) throws IOException {
+    public JsonElement champions(RegionEnum region, boolean freeToPlay) throws IOException, ApiException {
         return executeAndParse(champion.queryParameter("freeToPlay", freeToPlay).forRegion(region.abbr));
     }
 
-    public JsonElement champions(boolean freeToPlay) throws IOException {
+    public JsonElement champions(boolean freeToPlay) throws IOException, ApiException {
         return champions(defaultRegion(), freeToPlay);
     }
 }

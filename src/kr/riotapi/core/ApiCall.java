@@ -38,7 +38,7 @@ public class ApiCall {
         return toUrlString();
     }
 
-    public String execute() throws IOException {
+    public String execute() throws IOException, StatusCodeException {
         return request.getService().getApi().execute(this);
     }
 }

@@ -45,7 +45,7 @@ public class ApiDomain { //TODO find better name
         return builder.toString();
     }
 
-    public String execute(ApiCall call) throws IOException {
+    public String execute(ApiCall call) throws IOException, StatusCodeException {
         HttpGet get = new HttpGet(call.toUrlString());
         String body = null;
         int statusCode = 0;
@@ -58,7 +58,7 @@ public class ApiDomain { //TODO find better name
             throw new IOException("There was a problem receiving or processing a server response: " + ex.getMessage(), ex);
         }
         if(statusCode != HttpStatus.SC_OK)
-            throw new UnsupportedOperationException("status code not supported yet: " + statusCode); //TODO throw custom exception
+            throw new StatusCodeException("status code was not 200", statusCode);
         return body;
     }
 }

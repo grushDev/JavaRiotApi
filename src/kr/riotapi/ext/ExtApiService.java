@@ -19,7 +19,7 @@ public class ExtApiService extends ApiService {
         super(name, version, api);
     }
 
-    protected JsonElement executeAndParse(ApiCall call) throws IOException {
+    protected JsonElement executeAndParse(ApiCall call) throws IOException, ApiException {
         return ((RiotApi)api).executeAndParse(call);
     }
 

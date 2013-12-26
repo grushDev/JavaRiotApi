@@ -21,11 +21,11 @@ public class GameService extends ExtApiService {
         this.recent = request("by-summoner/{id}/recent");
     }
 
-    public JsonElement recent(RegionEnum region, int summonerId) throws IOException {
+    public JsonElement recent(RegionEnum region, int summonerId) throws IOException, ApiException {
         return executeAndParse(recent.pathParameter("id", summonerId).forRegion(region.abbr));
     }
 
-    public JsonElement recent(int summonerId) throws IOException {
+    public JsonElement recent(int summonerId) throws IOException, ApiException {
         return recent(defaultRegion(), summonerId);
     }
 }

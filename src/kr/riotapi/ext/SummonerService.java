@@ -27,35 +27,35 @@ public class SummonerService extends ExtApiService {
         this.masteries = request("{id}/masteries");
     }
 
-    public JsonElement byName(RegionEnum region, String name) throws IOException {
+    public JsonElement byName(RegionEnum region, String name) throws IOException, ApiException {
         return executeAndParse(byName.pathParameter("name", name).forRegion(region.abbr));
     }
 
-    public JsonElement byName(String name) throws IOException {
+    public JsonElement byName(String name) throws IOException, ApiException {
         return byName(defaultRegion(), name);
     }
 
-    public JsonElement byId(RegionEnum region, int summonerId) throws IOException {
+    public JsonElement byId(RegionEnum region, int summonerId) throws IOException, ApiException {
         return executeAndParse(byId.pathParameter("id", summonerId).forRegion(region.abbr));
     }
 
-    public JsonElement byId(int summonerId) throws IOException {
+    public JsonElement byId(int summonerId) throws IOException, ApiException {
         return byId(defaultRegion(), summonerId);
     }
 
-    public JsonElement runes(RegionEnum region, int summonerId) throws IOException {
+    public JsonElement runes(RegionEnum region, int summonerId) throws IOException, ApiException {
         return executeAndParse(runes.pathParameter("id", summonerId).forRegion(region.abbr));
     }
 
-    public JsonElement runes(int summonerId) throws IOException {
+    public JsonElement runes(int summonerId) throws IOException, ApiException {
         return runes(defaultRegion(), summonerId);
     }
 
-    public JsonElement masteries(RegionEnum region, int summonerId) throws IOException {
+    public JsonElement masteries(RegionEnum region, int summonerId) throws IOException, ApiException {
         return executeAndParse(masteries.pathParameter("id", summonerId).forRegion(region.abbr));
     }
 
-    public JsonElement masteries(int summonerId) throws IOException {
+    public JsonElement masteries(int summonerId) throws IOException, ApiException {
         return masteries(defaultRegion(), summonerId);
     }
 }

@@ -21,11 +21,11 @@ public class TeamService extends ExtApiService {
         this.bySummoner = request("by-summoner/{id}");
     }
 
-    public JsonElement bySummoner(RegionEnum region, int summonerId) throws IOException {
+    public JsonElement bySummoner(RegionEnum region, int summonerId) throws IOException, ApiException {
         return executeAndParse(bySummoner.pathParameter("id", summonerId).forRegion(region.abbr));
     }
 
-    public JsonElement bySummoner(int summonerId) throws IOException {
+    public JsonElement bySummoner(int summonerId) throws IOException, ApiException {
         return bySummoner(defaultRegion(), summonerId);
     }
 }

@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import kr.riotapi.core.ApiCall;
 import kr.riotapi.core.ApiDomain;
-import kr.riotapi.core.ApiRequest;
+import kr.riotapi.core.StatusCodeException;
 
 import java.io.IOException;
 
@@ -43,8 +43,13 @@ public class RiotApi extends ApiDomain {
         this.defaultRegion = defaultRegion;
     }
 
-    JsonElement executeAndParse(ApiCall call) throws IOException {
-        String jsonSource = execute(call);
+    JsonElement executeAndParse(ApiCall call) throws IOException, ApiException {
+        String jsonSource = null;
+        try {
+            jsonSource = execute(call);
+        } catch(StatusCodeException ex) {
+            throw new ApiException(ApiExceptionCause.byCode(ex.code), ex.code);
+        }
         return gson.fromJson(jsonSource, JsonElement.class);
     }
 

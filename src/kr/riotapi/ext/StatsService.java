@@ -23,35 +23,35 @@ public class StatsService extends ExtApiService {
         this.summary = request("by-summoner/{id}/summary");
     }
 
-    public JsonElement ranked(RegionEnum region, int summonerId) throws IOException {
+    public JsonElement ranked(RegionEnum region, int summonerId) throws IOException, ApiException {
         return executeAndParse(ranked.pathParameter("id", summonerId).forRegion(region.abbr));
     }
 
-    public JsonElement ranked(int summonerId) throws IOException {
+    public JsonElement ranked(int summonerId) throws IOException, ApiException {
         return ranked(defaultRegion(), summonerId);
     }
 
-    public JsonElement ranked(RegionEnum region, int summonerId, String seasonString) throws IOException {
+    public JsonElement ranked(RegionEnum region, int summonerId, String seasonString) throws IOException, ApiException {
         return executeAndParse(ranked.pathParameter("id", summonerId).queryParameter("season", seasonString).forRegion(region.abbr));
     }
 
-    public JsonElement ranked(int summonerId, String seasonString) throws IOException {
+    public JsonElement ranked(int summonerId, String seasonString) throws IOException, ApiException {
         return ranked(defaultRegion(), summonerId, seasonString);
     }
 
-    public JsonElement summary(RegionEnum region, int summonerId) throws IOException {
+    public JsonElement summary(RegionEnum region, int summonerId) throws IOException, ApiException {
         return executeAndParse(summary.pathParameter("id", summonerId).forRegion(region.abbr));
     }
 
-    public JsonElement summary(int summonerId) throws IOException {
+    public JsonElement summary(int summonerId) throws IOException, ApiException {
         return summary(defaultRegion(), summonerId);
     }
 
-    public JsonElement summary(RegionEnum region, int summonerId, String seasonString) throws IOException {
+    public JsonElement summary(RegionEnum region, int summonerId, String seasonString) throws IOException, ApiException {
         return executeAndParse(summary.pathParameter("id", summonerId).queryParameter("season", seasonString).forRegion(region.abbr));
     }
 
-    public JsonElement summary(int summonerId, String seasonString) throws IOException {
+    public JsonElement summary(int summonerId, String seasonString) throws IOException, ApiException {
         return summary(defaultRegion(), summonerId, seasonString);
     }
 }

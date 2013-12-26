@@ -25,4 +25,7 @@ public class TeamService extends ExtApiService {
         return executeAndParse(bySummoner.pathParameter("id", summonerId).forRegion(region.abbr));
     }
 
+    public JsonElement bySummoner(int summonerId) throws IOException {
+        return bySummoner(defaultRegion(), summonerId);
+    }
 }

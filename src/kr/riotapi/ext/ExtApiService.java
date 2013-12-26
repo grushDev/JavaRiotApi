@@ -22,4 +22,8 @@ public class ExtApiService extends ApiService {
     protected JsonElement executeAndParse(ApiCall call) throws IOException {
         return ((RiotApi)api).executeAndParse(call);
     }
+
+    public RegionEnum defaultRegion() {
+        return ((RiotApi)api).getDefaultRegion();
+    }
 }

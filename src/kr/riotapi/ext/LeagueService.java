@@ -24,4 +24,8 @@ public class LeagueService extends ExtApiService {
     public JsonElement bySummoner(RegionEnum region, int summonerId) throws IOException {
         return executeAndParse(bySummoner.pathParameter("id", summonerId).forRegion(region.abbr));
     }
+
+    public JsonElement bySummoner(int summonerId) throws IOException {
+        return bySummoner(defaultRegion(), summonerId);
+    }
 }

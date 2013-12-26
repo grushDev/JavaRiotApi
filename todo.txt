@@ -5,7 +5,7 @@
  * url errors (should not happen)       []
  * error code (api errors)              []
 04. json parsing with gson              [x]
-05. hard code as help (RiotApiHelper)   []
+05. hard code as help (RiotApiHelper)   [x]
  * implement all services               [x]
    + game                               [x]
    + stats                              [x]
@@ -13,10 +13,10 @@
    + summoner                           [x]
    + team                               [x]
    + champion                           [x]
- * default region for all calls         []
-06. document code
- * core
- * ext
+ * default region for all calls         [x]
+06. document code                       []
+ * core                                 []
+ * ext                                  []
 
 
 POOL

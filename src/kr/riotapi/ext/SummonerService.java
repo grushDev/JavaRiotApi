@@ -31,15 +31,31 @@ public class SummonerService extends ExtApiService {
         return executeAndParse(byName.pathParameter("name", name).forRegion(region.abbr));
     }
 
+    public JsonElement byName(String name) throws IOException {
+        return byName(defaultRegion(), name);
+    }
+
     public JsonElement byId(RegionEnum region, int summonerId) throws IOException {
         return executeAndParse(byId.pathParameter("id", summonerId).forRegion(region.abbr));
+    }
+
+    public JsonElement byId(int summonerId) throws IOException {
+        return byId(defaultRegion(), summonerId);
     }
 
     public JsonElement runes(RegionEnum region, int summonerId) throws IOException {
         return executeAndParse(runes.pathParameter("id", summonerId).forRegion(region.abbr));
     }
 
+    public JsonElement runes(int summonerId) throws IOException {
+        return runes(defaultRegion(), summonerId);
+    }
+
     public JsonElement masteries(RegionEnum region, int summonerId) throws IOException {
         return executeAndParse(masteries.pathParameter("id", summonerId).forRegion(region.abbr));
+    }
+
+    public JsonElement masteries(int summonerId) throws IOException {
+        return masteries(defaultRegion(), summonerId);
     }
 }

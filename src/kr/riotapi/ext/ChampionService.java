@@ -25,7 +25,15 @@ public class ChampionService extends ExtApiService {
         return champions(region, false);
     }
 
+    public JsonElement champions() throws IOException {
+        return champions(defaultRegion());
+    }
+
     public JsonElement champions(RegionEnum region, boolean freeToPlay) throws IOException {
         return executeAndParse(champion.queryParameter("freeToPlay", freeToPlay).forRegion(region.abbr));
+    }
+
+    public JsonElement champions(boolean freeToPlay) throws IOException {
+        return champions(defaultRegion(), freeToPlay);
     }
 }

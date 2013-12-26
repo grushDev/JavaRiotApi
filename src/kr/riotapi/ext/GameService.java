@@ -24,4 +24,8 @@ public class GameService extends ExtApiService {
     public JsonElement recent(RegionEnum region, int summonerId) throws IOException {
         return executeAndParse(recent.pathParameter("id", summonerId).forRegion(region.abbr));
     }
+
+    public JsonElement recent(int summonerId) throws IOException {
+        return recent(defaultRegion(), summonerId);
+    }
 }

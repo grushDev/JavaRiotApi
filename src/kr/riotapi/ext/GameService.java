@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import kr.riotapi.core.ApiRequest;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,17 +26,17 @@ public class GameService extends ExtApiService {
         return executeAndParse(recent.pathParameter("id", summonerId).forRegion(region.abbr));
     }
 
-    public <V> V recent(RegionEnum region, int summonerId, Class<V> returnType) throws IOException, ApiException {
+    public <V> List<V> recent(RegionEnum region, int summonerId, Class<V> returnType) throws IOException, ApiException {
         JsonElement element = recent(region, summonerId);
-        return translate(returnType, element);
+        return translateList(returnType, element);
     }
 
     public JsonElement recent(int summonerId) throws IOException, ApiException {
         return recent(defaultRegion(), summonerId);
     }
 
-    public <V> V recent(int summonerId, Class<V> returnType) throws IOException, ApiException {
+    public <V> List<V> recent(int summonerId, Class<V> returnType) throws IOException, ApiException {
         JsonElement element = recent(summonerId);
-        return translate(returnType, element);
+        return translateList(returnType, element);
     }
 }

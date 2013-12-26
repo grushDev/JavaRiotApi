@@ -21,12 +21,12 @@
  * service calls                        []
  * translating                          []
 08. add customizable return types       []
- * LeagueService                        []
- * GameService                          []
+ * LeagueService                        [x]
+ * GameService                          [x]
  * ChampionService                      [x]
- * StatsService                         []
+ * StatsService                         [x]
  * SummonerService                      []
- * TeamService                          []
+ * TeamService                          [x]
 
 
 What might be done

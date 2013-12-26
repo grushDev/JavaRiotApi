@@ -20,12 +20,13 @@
 07. testing                             []
  * service calls                        []
  * translating                          []
-08. add customizable return types       []
+08. add customizable return types       [x]
+ * base Implementation                  [x]
  * LeagueService                        [x]
  * GameService                          [x]
  * ChampionService                      [x]
  * StatsService                         [x]
- * SummonerService                      []
+ * SummonerService                      [x]
  * TeamService                          [x]
 
 

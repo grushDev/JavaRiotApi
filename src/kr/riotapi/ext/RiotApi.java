@@ -1,13 +1,17 @@
 package kr.riotapi.ext;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import kr.riotapi.core.ApiCall;
 import kr.riotapi.core.ApiDomain;
 import kr.riotapi.core.StatusCodeException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,6 +31,7 @@ public class RiotApi extends ApiDomain {
 
     protected final Gson gson;
     protected RegionEnum defaultRegion = RegionEnum.NORTH_AMERICA;
+    protected Map<Class, Translator> translatorMap;
 
     public RiotApi(String apiKey) {
         super(apiKey);
@@ -36,7 +41,8 @@ public class RiotApi extends ApiDomain {
         this.league = new LeagueService(this);
         this.stats = new StatsService(this);
         this.team = new TeamService(this);
-        gson = new Gson();
+        this.gson = new Gson();
+        this.translatorMap = new HashMap<>();
     }
 
     public RiotApi(String apiKey, RegionEnum defaultRegion) {
@@ -63,18 +69,39 @@ public class RiotApi extends ApiDomain {
     }
 
     public <V> void registerTranslator(Class<V> key, Translator<V> translator) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        translatorMap.put(key, translator);
     }
 
     public <V> void deregisterTranslator(Class<V> key) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        translatorMap.remove(key);
     }
 
     <V> V translate(Class<V> key, JsonElement data) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            return (V) translatorMap.get(key).translate(data);
+        } catch(Exception ex) {
+            throw new TranslateException("could not translate data", ex);
+        }
     }
 
     <V> List<V> translateList(Class<V> key, JsonElement data) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        ArrayList<V> list = new ArrayList<>();
+        JsonArray array = data.getAsJsonArray();
+        for(JsonElement element : array) {
+            list.add(translate(key, element));
+        }
+        return list;
+    }
+
+    public boolean isRegistered(Class key) {
+        return translatorMap.containsKey(key);
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public String getBaseUrl() {
+        return baseUrl;
     }
 }

@@ -7,6 +7,7 @@ import kr.riotapi.core.ApiDomain;
 import kr.riotapi.core.StatusCodeException;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -59,5 +60,21 @@ public class RiotApi extends ApiDomain {
 
     public void setDefaultRegion(RegionEnum defaultRegion) {
         this.defaultRegion = defaultRegion;
+    }
+
+    public <V> void registerTranslator(Class<V> key, Translator<V> translator) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public <V> void deregisterTranslator(Class<V> key) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    <V> V translate(Class<V> key, JsonElement data) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    <V> List<V> translateList(Class<V> key, JsonElement data) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

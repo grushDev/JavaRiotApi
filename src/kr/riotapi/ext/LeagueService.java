@@ -25,7 +25,15 @@ public class LeagueService extends ExtApiService {
         return executeAndParse(bySummoner.pathParameter("id", summonerId).forRegion(region.abbr));
     }
 
+    public <V> V bySummoner(RegionEnum region, int summonerId, Class<V> returnType) throws IOException, ApiException {
+        return translate(returnType, bySummoner(region, summonerId));
+    }
+
     public JsonElement bySummoner(int summonerId) throws IOException, ApiException {
         return bySummoner(defaultRegion(), summonerId);
+    }
+
+    public <V> V bySummoner(int summonerId, Class<V> returnType) throws IOException, ApiException {
+        return translate(returnType, bySummoner(summonerId));
     }
 }

@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import kr.riotapi.core.ApiRequest;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,15 +26,31 @@ public class ChampionService extends ExtApiService {
         return champions(region, false);
     }
 
+    public <V> List<V> champions(RegionEnum region, Class<V> returnType) throws IOException, ApiException {
+        return translateList(returnType, champions(region));
+    }
+
     public JsonElement champions() throws IOException, ApiException {
         return champions(defaultRegion());
+    }
+
+    public <V> List<V> champions(Class<V> returnType) throws IOException, ApiException {
+        return translateList(returnType, champions());
     }
 
     public JsonElement champions(RegionEnum region, boolean freeToPlay) throws IOException, ApiException {
         return executeAndParse(champion.queryParameter("freeToPlay", freeToPlay).forRegion(region.abbr));
     }
 
+    public <V> List<V> champions(RegionEnum region, boolean freeToPlay, Class<V> returnType) throws IOException, ApiException {
+        return translateList(returnType, champions(region, freeToPlay));
+    }
+
     public JsonElement champions(boolean freeToPlay) throws IOException, ApiException {
         return champions(defaultRegion(), freeToPlay);
+    }
+
+    public <V> List<V> champions(boolean freeToPlay, Class<V> returnType) throws IOException, ApiException {
+        return translateList(returnType, champions(freeToPlay));
     }
 }

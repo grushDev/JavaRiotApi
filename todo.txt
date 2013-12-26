@@ -2,7 +2,7 @@
 02. Execute calls (core, apache)        [x]
 03. error handling                      [x]
  * Network errors                       [x]
- * url errors (should not happen)       [-] //maybe do it when needed
+ * url errors (should not happen)       [-] //maybe when needed
  * error code (api errors)              [x]
 04. json parsing with gson              [x]
 05. hard code as help (RiotApiHelper)   [x]
@@ -17,10 +17,23 @@
 06. document code                       []
  * core                                 []
  * ext                                  []
+07. testing                             []
+ * service calls                        []
+ * translating                          []
+08. add customizable return types       []
+ * LeagueService                        []
+ * GameService                          []
+ * ChampionService                      [x]
+ * StatsService                         []
+ * SummonerService                      []
+ * TeamService                          []
 
 
-POOL
+What might be done
 ======================================
+ * call caching
+ * call limit handling
+ * hard code masteries / runes and other stuff
 
 COMPONENTS
 ======================================

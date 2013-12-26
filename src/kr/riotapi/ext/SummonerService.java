@@ -15,13 +15,31 @@ import java.io.IOException;
 public class SummonerService extends ExtApiService {
 
     protected final ApiRequest byName;
+    protected final ApiRequest byId;
+    protected final ApiRequest runes;
+    protected final ApiRequest masteries;
 
     public SummonerService(RiotApi api) {
         super("summoner", "v1.2", api);
-        byName = this.request("by-name/{name}");
+        this.byName = request("by-name/{name}");
+        this.byId = request("{id}");
+        this.runes = request("{id}/runes");
+        this.masteries = request("{id}/masteries");
     }
 
     public JsonElement byName(RegionEnum region, String name) throws IOException {
         return executeAndParse(byName.pathParameter("name", name).forRegion(region.abbr));
+    }
+
+    public JsonElement byId(RegionEnum region, int summonerId) throws IOException {
+        return executeAndParse(byId.pathParameter("id", summonerId).forRegion(region.abbr));
+    }
+
+    public JsonElement runes(RegionEnum region, int summonerId) throws IOException {
+        return executeAndParse(runes.pathParameter("id", summonerId).forRegion(region.abbr));
+    }
+
+    public JsonElement masteries(RegionEnum region, int summonerId) throws IOException {
+        return executeAndParse(masteries.pathParameter("id", summonerId).forRegion(region.abbr));
     }
 }

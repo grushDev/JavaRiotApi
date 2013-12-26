@@ -18,16 +18,41 @@ import java.io.IOException;
 public class RiotApi extends ApiDomain {
 
     public final SummonerService summoner;
+    public final ChampionService champion;
+    public final LeagueService league;
+    public final GameService game;
+    public final StatsService stats;
+    public final TeamService team;
+
     protected final Gson gson;
+    protected RegionEnum defaultRegion = RegionEnum.NORTH_AMERICA;
 
     public RiotApi(String apiKey) {
         super(apiKey);
         this.summoner = new SummonerService(this);
+        this.champion = new ChampionService(this);
+        this.game = new GameService(this);
+        this.league = new LeagueService(this);
+        this.stats = new StatsService(this);
+        this.team = new TeamService(this);
         gson = new Gson();
+    }
+
+    public RiotApi(String apiKey, RegionEnum defaultRegion) {
+        this(apiKey);
+        this.defaultRegion = defaultRegion;
     }
 
     JsonElement executeAndParse(ApiCall call) throws IOException {
         String jsonSource = execute(call);
         return gson.fromJson(jsonSource, JsonElement.class);
+    }
+
+    public RegionEnum getDefaultRegion() {
+        return defaultRegion;
+    }
+
+    public void setDefaultRegion(RegionEnum defaultRegion) {
+        this.defaultRegion = defaultRegion;
     }
 }

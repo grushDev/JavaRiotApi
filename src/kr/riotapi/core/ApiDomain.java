@@ -1,5 +1,6 @@
 package kr.riotapi.core;
 
+import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -56,7 +57,7 @@ public class ApiDomain { //TODO find better name
         } catch(IOException ex) {
             throw new IOException("There was a problem receiving or processing a server response: " + ex.getMessage(), ex);
         }
-        if(statusCode != 200) //TODO magic number
+        if(statusCode != HttpStatus.SC_OK)
             throw new UnsupportedOperationException("status code not supported yet: " + statusCode); //TODO throw custom exception
         return body;
     }

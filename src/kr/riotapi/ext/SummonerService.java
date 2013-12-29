@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2013  Kenneth Radunz kenneth.r.dev@gmail.com
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+
 package kr.riotapi.ext;
 
 import com.google.gson.JsonElement;
@@ -5,13 +22,6 @@ import kr.riotapi.core.ApiRequest;
 
 import java.io.IOException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: kenneth
- * Date: 25.12.13
- * Time: 17:20
- * To change this template use File | Settings | File Templates.
- */
 public class SummonerService extends ExtApiService {
 
     protected final ApiRequest byName;

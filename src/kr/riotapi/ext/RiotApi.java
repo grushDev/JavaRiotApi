@@ -30,6 +30,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The entry point for doing Riot api calls via the extension package provided by this library.
+ * This Class handles the api key, a default region and if wanted translators.
+ * ApiCalls are executed and parsed by this class but are triggered by using a method in one of the
+ * several service classes. The services of this api can be accessed via the public fields of this class.
+ * This class is not programmed to be thread safe.
+ * @author Kenneth Radunz
+ */
 public class RiotApi extends ApiDomain {
 
     public final SummonerService summoner;
@@ -43,6 +51,11 @@ public class RiotApi extends ApiDomain {
     protected RegionEnum defaultRegion = RegionEnum.NORTH_AMERICA;
     protected Map<Class, Translator> translatorMap;
 
+    /**
+     * <p>creates a new RiotApi which will use the specified api key for api calls.
+     * The default region is set to <code>RegionEnum.NORTH_AMERICA</code>.</p>
+     * @param apiKey - the api key to use by the created instance of this class, should a valid key
+     */
     public RiotApi(String apiKey) {
         super(apiKey);
         this.summoner = new SummonerService(this);
@@ -55,9 +68,16 @@ public class RiotApi extends ApiDomain {
         this.translatorMap = new HashMap<>();
     }
 
+    /**
+     * <p>creates a new RiotApi which will use the specified api key for api calls
+     * and will use the passed region as default region.</p>
+     * @param apiKey - the api key to use by the created instance of this class, should be a valid key
+     * @param defaultRegion - the passed region will be used as default region, <code>RegionEnum.NORTH_AMERICE</code>
+     *                      will be used if <code>null</code>
+     */
     public RiotApi(String apiKey, RegionEnum defaultRegion) {
         this(apiKey);
-        this.defaultRegion = defaultRegion;
+        this.defaultRegion = defaultRegion == null ? RegionEnum.NORTH_AMERICA : defaultRegion;
     }
 
     JsonElement executeAndParse(ApiCall call) throws IOException, ApiException {
@@ -70,14 +90,30 @@ public class RiotApi extends ApiDomain {
         return gson.fromJson(jsonSource, JsonElement.class);
     }
 
+    /**
+     * <p>return the default region used by this instance.</p>
+     * @return the default region of this instance
+     */
     public RegionEnum getDefaultRegion() {
         return defaultRegion;
     }
 
+    /**
+     * <p>sets the default region of this instance to the passed argument.
+     * All future calls will use the passed argument as default region if needed.</p>
+     * @param defaultRegion - the new default region. <code>RegionEnum.NORTH_AMERICA</code> if <code>null</code> is passed
+     */
     public void setDefaultRegion(RegionEnum defaultRegion) {
-        this.defaultRegion = defaultRegion;
+        this.defaultRegion = defaultRegion == null? RegionEnum.NORTH_AMERICA : defaultRegion;
     }
 
+    /**
+     * <p>registers a new translator for a given class. ApiCalls can now be translated to the type specified by <code>key</code>
+     * using the service fields of the instance where the translator is registered.</p>
+     * @param key - the key under which the translator is stored
+     * @param translator - the translator to call
+     * @param <V> - the type the translator translates to
+     */
     public <V> void registerTranslator(Class<V> key, Translator<V> translator) {
         translatorMap.put(key, translator);
     }

@@ -65,7 +65,7 @@ public class ApiDomain { //TODO find better name???
             body = EntityUtils.toString(response.getEntity());
             response.close();
         } catch(IOException ex) {
-            throw new IOException("There was a problem receiving or processing a server response: " + ex.getMessage(), ex);
+            throw new IOException("There was a problem receiving or processing a server response", ex);
         }
         if(statusCode != HttpStatus.SC_OK)
             throw new StatusCodeException("status code was not 200", statusCode);

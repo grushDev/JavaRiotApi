@@ -139,10 +139,19 @@ public class RiotApi extends ApiDomain {
         return list;
     }
 
+    /**
+     * <p>checks if a translator is stored under the key passed.</p>
+     * @param key - the key to look up
+     * @return <code>true</code>, if there is a translator for the key passed, <code>false</code> otherwise
+     */
     public boolean isRegistered(Class key) {
         return translatorMap.containsKey(key);
     }
 
+    /**
+     * <p>the api key which is used by this instance</p>
+     * @return the api key given when constructing this file
+     */
     public String getApiKey() {
         return apiKey;
     }
